@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TDS — Portfolio</title>
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Patrick+Hand&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'chalk-slate': 'var(--chalk-slate)',
+                        'chalk-white': 'var(--chalk-white)',
+                        'chalk-blue': 'var(--chalk-blue)',
+                        'chalk-yellow': 'var(--chalk-yellow)',
+                        'chalk-red': 'var(--chalk-red)',
+                        'card-bg': 'var(--card-bg)',
+                    },
+                    boxShadow: {
+                        'chalk': '3px 3px 0px rgba(255, 255, 255, 0.1), -3px -3px 0px rgba(0, 0, 0, 0.1)',
+                    },
+                    keyframes: {
+                        'fade-in-up': {
+                            from: {
+                                opacity: 0,
+                                transform: 'translateY(20px)'
+                            },
+                            to: {
+                                opacity: 1,
+                                transform: 'translateY(0)'
+                            }
+                        },
+                        'wave-hand': {
+                            '0%': {
+                                transform: 'rotate(0.0deg)'
+                            },
+                            '10%': {
+                                transform: 'rotate(14.0deg)'
+                            },
+                            '20%': {
+                                transform: 'rotate(-8.0deg)'
+                            },
+                            '30%': {
+                                transform: 'rotate(14.0deg)'
+                            },
+                            '40%': {
+                                transform: 'rotate(-4.0deg)'
+                            },
+                            '50%': {
+                                transform: 'rotate(10.0deg)'
+                            },
+                            '60%': {
+                                transform: 'rotate(0.0deg)'
+                            },
+                            '100%': {
+                                transform: 'rotate(0.0deg)'
+                            }
+                        },
+                        'scribble': {
+                            '0%': {
+                                transform: 'translate(0, 0)'
+                            },
+                            '25%': {
+                                transform: 'translate(-2px, 2px) rotate(1deg)'
+                            },
+                            '50%': {
+                                transform: 'translate(2px, -2px) rotate(-1deg)'
+                            },
+                            '75%': {
+                                transform: 'translate(-1px, 1px) rotate(0.5deg)'
+                            },
+                            '100%': {
+                                transform: 'translate(0, 0)'
+                            }
+                        },
+                        'chalk-dust': {
+                            '0%': {
+                                backgroundPosition: '0 0'
+                            },
+                            '100%': {
+                                backgroundPosition: '100% 100%'
+                            }
+                        },
+                        'spin-in': {
+                            '0%': {
+                                opacity: '0',
+                                transform: 'scale(0) rotate(0deg)'
+                            },
+                            '100%': {
+                                opacity: '1',
+                                transform: 'scale(1) rotate(360deg)'
+                            }
+                        },
+                        'shine-in': {
+                            '0%': {
+                                opacity: '0',
+                                transform: 'scale(0)'
+                            },
+                            '100%': {
+                                opacity: '1',
+                                transform: 'scale(1)'
+                            }
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+                        'wave-hand': 'wave-hand 2s infinite',
+                        'scribble': 'scribble 0.2s linear infinite'
+                    },
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="/static/core/css/style.css">
+
+</head>
+
+<body class="bg-chalk-slate text-chalk-white">
+
+    <!-- Initial Blank Page -->
+    <div id="initialPage" class="initial-page">
+        <h1 class="pat-hand text-5xl text-center text-chalk-white relative z-10">
+            <span class="font-bold">Sketching</span><br><span class="text-3xl">my portfolio...😁</span>
+        </h1>
+        <p class="absolute bottom-20 text-sm text-chalk-white/80 z-10">Tap to see the final sketch...</p>
+        <div class="chalk-doodle text-chalk-blue text-9xl top-1/4 left-1/4" style="--delay: 1s;">💡</div>
+        <div class="chalk-doodle text-chalk-red text-8xl bottom-1/4 right-1/4" style="--delay: 1.5s;">🚀</div>
+        <!-- <div class="chalk-doodle text-chalk-yellow text-7xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="--delay: 2s;">🎨</div> -->
+    </div>
+
+    <div class="main-container max-w-7xl mx-auto p-4 md:p-8 grid md:grid-cols-4 gap-8">
+        <!-- Main Content -->
+        <div class="main-page rounded-lg p-6 md:p-10 md:col-span-3">
+
+            <!-- Hero / header -->
+            <header class="p-6 flex justify-between items-center relative border-b border-chalk-white/30 pb-4 mb-4">
+                <div class="flex flex-col">
+                    <h1 class="text-3xl font-bold pat-hand text-chalk-white">TDS — <span
+                            class="text-chalk-blue">PORTFOLIO</span></h1>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex gap-4 text-lg items-center">
+                    <a href="#about" class="text-decoration-none hover:text-chalk-blue transition-colors">About</a>
+                    <a href="#projects" class="text-decoration-none hover:text-chalk-blue transition-colors">Projects</a>
+                    <a href="#skills" class="text-decoration-none hover:text-chalk-blue transition-colors">Skills</a>
+                    <a href="#contact" class="text-decoration-none hover:text-chalk-blue transition-colors">Contact</a>
+                    <button id="toggleTheme"
+                        class="bg-card-bg text-chalk-white rounded-lg px-4 py-2 hover:bg-chalk-slate transition-colors ml-4 border border-chalk-white">
+                        ☀️
+                    </button>
+                </nav>
+
+                <!-- Mobile Navigation Button -->
+                <button id="mobileNavBtn" class="md:hidden text-3xl text-chalk-white">🐦</button>
+            </header>
+
+            <!-- About Section -->
+            <section id="about" class="px-3 md:px-6 py-10 animate-on-scroll">
+                <h2 class="text-4xl font-semibold mb-4 pat-hand text-chalk-white">About Me</h2>
+                <p class="text-base text-chalk-white/80">
+                    Hello! I'm Tushar Dattatray sune, a passionate developer and creative professional. I enjoy building things that
+                    live on the web, from full-stack applications to machine learning models and animated shorts. My
+                    goal is to blend technical precision with creative problem-solving to deliver unique and
+                    impactful solutions.
+                </p>
+            </section>
+
+            <!-- Hero with profile picture and welcome message -->
+            <section class="px-3 md:px-6 py-10 flex flex-col md:flex-row items-center gap-8 animate-on-scroll">
+                <div
+                    class="w-[200px] h-[200px] rounded-full relative p-1 shadow-md hover:scale-105 transition-transform border-4 border-chalk-white">
+                    <img src="/static/images/3.png" alt="Profile Picture"
+                        class="w-full h-full object-cover rounded-full p-2 bg-chalk-slate border-2 border-chalk-blue/50">
+                </div>
+                <div class="text-center md:text-left">
+                    <h2 class="text-5xl font-bold mb-3 pat-hand text-chalk-white">
+                        <span class="text-chalk-yellow">Hey, I'm Tushar</span> <span id="wavingHand"
+                            class="inline-block origin-[70%_70%] animate-wave-hand">👋</span>
+                    </h2>
+                    <p class="text-chalk-white mb-4">
+                        <span id="jobTitle"></span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Projects section with a new grid layout -->
+            <section id="projects" class="px-3 md:px-6 py-10 animate-on-scroll">
+                <h3 class="text-4xl font-semibold mb-4 pat-hand text-chalk-white">Projects</h3>
+                <div id="projectGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Project cards will be dynamically inserted here by JavaScript -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Right sidebar for Skills & Contact -->
+        <div class="md:col-span-1 flex flex-col gap-8">
+            <!-- Skills -->
+            <div id="skills" class="skills-card rounded-lg shadow-chalk p-6 md:p-8 animate-on-scroll">
+                <h3 class="text-3xl font-semibold mb-4 pat-hand text-chalk-white">Skills</h3>
+                <div id="skillsWrap" class="flex flex-wrap gap-2">
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">Python</span>
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">Django</span>
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">Flask</span>
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">JavaScript</span>
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">Tailwind</span>
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">Three.js</span>
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">TensorFlow</span>
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">ML</span>
+                    <span
+                        class="skills-card text-chalk-white px-3 py-1 rounded-full text-sm font-medium border border-chalk-white/20">Animation</span>
+                </div>
+            </div>
+
+            <!-- Music Player -->
+            <div id="musicPlayer"
+                class="bg-card-bg text-chalk-white rounded-lg p-4 shadow-chalk flex flex-col gap-2 border border-chalk-white/20 md:fixed md:bottom-4 md:right-4">
+                <h4 class="text-lg font-semibold pat-hand text-chalk-white">Sketchpad Sounds</h4>
+                <select id="songSelect"
+                    class="w-full rounded-md p-2 bg-chalk-slate text-chalk-white border-2 border-chalk-white/30 focus:outline-none focus:ring-2 focus:ring-chalk-white">
+                    <option value="" disabled selected>Select a sound</option>
+                </select>
+                <button id="musicControlBtn"
+                    class="bg-chalk-white text-chalk-slate rounded-lg px-4 py-2 hover:bg-chalk-white/80 transition-colors font-bold shadow-chalk">
+                    Play
+                </button>
+            </div>
+
+            <!-- Contact -->
+            <div id="contact" class="skills-card rounded-lg shadow-chalk p-6 md:p-8 animate-on-scroll">
+                <h3 class="text-3xl font-semibold mb-4 pat-hand text-chalk-white">Contact</h3>
+                <form id="contactForm" class="flex flex-col gap-4">
+                    <input name="name"
+                        class="w-full rounded-lg bg-chalk-slate text-chalk-white border-2 border-chalk-white/40 p-2 focus:outline-none focus:ring-2 focus:ring-chalk-blue"
+                        placeholder="Your name" required>
+                    <input name="email"
+                        class="w-full rounded-lg bg-chalk-slate text-chalk-white border-2 border-chalk-white/40 p-2 focus:outline-none focus:ring-2 focus:ring-chalk-blue"
+                        placeholder="Email" type="email" required>
+                    <textarea name="message"
+                        class="w-full rounded-lg bg-chalk-slate text-chalk-white border-2 border-chalk-white/40 p-2 focus:outline-none focus:ring-2 focus:ring-chalk-blue"
+                        rows="4" placeholder="Message" required></textarea>
+                    <button type="submit"
+                        class="bg-chalk-white text-chalk-slate rounded-lg px-4 py-2 hover:bg-chalk-white/80 transition-colors font-bold shadow-chalk">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navigation Overlay -->
+    <div id="mobileNavOverlay" class="mobile-nav-menu fixed top-0 left-0 w-full h-full bg-chalk-slate z-[4000] p-8">
+        <button id="closeMobileNavBtn" class="close-btn text-chalk-white text-5xl">&times;</button>
+        <div class="flex flex-col items-center justify-center h-full gap-8">
+            <a href="#about"
+                class="text-4xl pat-hand text-chalk-white hover:text-chalk-blue transition-colors mobile-nav-link">About</a>
+            <a href="#projects"
+                class="text-4xl pat-hand text-chalk-white hover:text-chalk-blue transition-colors mobile-nav-link">Projects</a>
+            <a href="#skills"
+                class="text-4xl pat-hand text-chalk-white hover:text-chalk-blue transition-colors mobile-nav-link">Skills</a>
+            <a href="#contact"
+                class="text-4xl pat-hand text-chalk-white hover:text-chalk-blue transition-colors mobile-nav-link">Contact</a>
+            <button id="toggleThemeMobile"
+                class="bg-card-bg text-chalk-white rounded-lg px-4 py-2 text-2xl hover:bg-chalk-slate transition-colors border border-chalk-white">
+                ☀️
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Project Details Overlay -->
+    <div id="projectOverlay" class="project-overlay">
+        <div class="project-overlay-content" id="projectOverlayContent">
+            <span class="close-btn" id="closeOverlayBtn">&times;</span>
+            <div>
+                <!-- Project details will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Message Box -->
+    <div id="messageBox" class="message-box bg-chalk-blue text-chalk-slate">
+        Message sent successfully!
+    </div>
+    <script src="/static/core/js/main.js"></script>
+</body>
+
+</html>

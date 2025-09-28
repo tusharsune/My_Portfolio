@@ -1,0 +1,265 @@
+
+document.addEventListener('DOMContentLoaded', () => {
+  const body = document.body;
+  const toggleThemeBtn = document.getElementById('toggleTheme');
+  const initialPage = document.getElementById('initialPage');
+  const projectGrid = document.getElementById('projectGrid');
+  const projectOverlay = document.getElementById('projectOverlay');
+  const projectOverlayContent = document.getElementById('projectOverlayContent');
+  const closeOverlayBtn = document.getElementById('closeOverlayBtn');
+  const contactForm = document.getElementById('contactForm');
+  const messageBox = document.getElementById('messageBox');
+  const cursorFollower = document.getElementById('cursorFollower');
+  const jobTitleEl = document.getElementById('jobTitle');
+  const wavingHandEl = document.getElementById('wavingHand');
+  const sections = document.querySelectorAll('.animate-on-scroll');
+  const musicPlayer = document.getElementById('musicPlayer');
+  const songSelect = document.getElementById('songSelect');
+  const musicControlBtn = document.getElementById('musicControlBtn');
+
+  // --- Theme toggle logic ---
+  let isLightMode = false;
+  function updateTheme() {
+    if (isLightMode) {
+      body.classList.add('light-theme');
+      toggleThemeBtn.textContent = '🌙';
+    } else {
+      body.classList.remove('light-theme');
+      toggleThemeBtn.textContent = '☀️';
+    }
+  }
+  if (toggleThemeBtn) {
+    updateTheme();
+    toggleThemeBtn.addEventListener('click', () => {
+      isLightMode = !isLightMode;
+      updateTheme();
+    });
+  }
+
+  // --- Initial page animation ---
+  initialPage.addEventListener('click', () => {
+    initialPage.classList.add('hidden');
+  });
+
+  // --- Auto-stop wave hand animation after 5 seconds ---
+  setTimeout(() => {
+    wavingHandEl.style.animation = 'none';
+  }, 5000);
+
+  // --- Dynamic typing effect for job titles ---
+  const jobTitles = ["Software Engineer", "ML Engineer", "Animator", "Web Developer"];
+  let jobTitleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  function typeWriter() {
+    const currentTitle = jobTitles[jobTitleIndex];
+    if (isDeleting) {
+      jobTitleEl.textContent = currentTitle.substring(0, charIndex - 1);
+      charIndex--;
+      if (charIndex === 0) {
+        isDeleting = false;
+        jobTitleIndex = (jobTitleIndex + 1) % jobTitles.length;
+        setTimeout(typeWriter, 500);
+      } else {
+        setTimeout(typeWriter, 50);
+      }
+    } else {
+      jobTitleEl.textContent = currentTitle.substring(0, charIndex + 1);
+      charIndex++;
+      if (charIndex === currentTitle.length) {
+        isDeleting = true;
+        setTimeout(typeWriter, 1500);
+      } else {
+        setTimeout(typeWriter, 100);
+      }
+    }
+  }
+  setTimeout(typeWriter, 2000);
+
+  // --- Animations on scroll (IntersectionObserver) ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in-up');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+
+  // --- Project data ---
+  const projectsData = [{
+    title: "Portfolio Builder App",
+    description: "This project is a dynamic web application for developers to effortlessly create and showcase their portfolios. It offers multiple responsive templates and a live-preview feature, allowing for real-time customization of projects, skills, and contact information. Built with a robust Django backend and a responsive vanilla JavaScript frontend, this app was an in-depth exercise in full-stack development and user-centric design.",
+    image: "https://placehold.co/400x250/a5d6e1/333d42?text=Portfolio+Builder",
+    tech: [{ name: "Django" }, { name: "Bootstrap" }, { name: "JS" }],
+    repo_url: "https://github.com/username/portfolio-app",
+    live_url: "https://portfolio.example.com"
+  }, {
+    title: "Mango Leaf Disease Classifier",
+    description: "A sophisticated machine learning model built with TensorFlow to accurately detect common diseases in mango leaves. The project includes an intuitive web interface developed with Streamlit, enabling users to upload images and receive real-time classification results. This tool is designed to assist farmers in early disease identification, which is crucial for preventing crop loss. It's a prime example of applying machine learning to solve real-world agricultural problems.",
+    image: "https://placehold.co/800x250/ef4444/f0f0f0?text=Mango+Leaf+Classifier",
+    tech: [{ name: "Python" }, { name: "TensorFlow" }, { name: "Streamlit" }],
+    repo_url: "https://github.com/username/mango-leaf-classifier",
+    live_url: "https://mango.example.com"
+  }, {
+    title: "Employee Management System",
+    description: "This comprehensive web application provides full control over employee data with Create, Read, Update, and Delete (CRUD) operations. Developed using Python with the Flask framework and a MySQL database, the system features a secure login system for HR managers and insightful data visualization dashboards. It's a showcase of building a secure and functional enterprise-grade application from the ground up.",
+    image: "https://placehold.co/400x250/a5d6e1/333d42?text=EMS",
+    tech: [{ name: "Python" }, { name: "MySQL" }, { name: "Flask" }],
+    repo_url: "https://github.com/username/employee-management-system",
+    live_url: "https://ems.example.com"
+  }, {
+    title: "Animated Cartoon Series",
+    description: "A passion project that delves into creative storytelling and animation. I developed the characters and storyline for a college-themed web series. The animations were brought to life using a combination of Adobe Illustrator for vector art and Blender for 3D elements. This project highlights the intersection of technical skills and artistic vision, demonstrating a comprehensive understanding of animation pipelines and character design.",
+    image: "https://placehold.co/400x500/ef4444/f0f0f0?text=Animated+Cartoon",
+    tech: [{ name: "Animation" }, { name: "Illustrator" }, { name: "Blender" }],
+    repo_url: "https://github.com/username/animated-cartoon-series",
+    live_url: "https://cartoon-series.example.com"
+  }, {
+    title: "SMS Spam Detection",
+    description: "An essential machine learning project for classifying text messages as either spam or legitimate. It leverages advanced Natural Language Processing (NLP) techniques and a powerful TensorFlow model for highly accurate detection. The entire process, from data preprocessing and tokenization to model training, is included, making it a complete solution that demonstrates practical ML application to solve a common communication problem.",
+    image: "https://placehold.co/400x250/a5d6e1/333d42?text=Spam+Detection",
+    tech: [{ name: "Python" }, { name: "Pandas" }, { name: "TensorFlow" }],
+    repo_url: "https://github.com/username/sms-spam-detection",
+    live_url: "https://spam-detection.example.com"
+  }];
+
+  // --- Project overlay logic ---
+  projectGrid.addEventListener('click', (e) => {
+    const card = e.target.closest('.project-card');
+    if (!card) return;
+
+    const projectId = card.dataset.projectId;
+    const project = projectsData[projectId];
+
+    if (project) {
+      projectOverlayContent.querySelector('div').innerHTML = `
+                        <div class="flex flex-col md:flex-row gap-4 items-start">
+                            <img src="${project.image}" class="w-full md:w-1/3 rounded-md border-2 border-chalk-white/40" alt="${project.title}">
+                            <div class="project-details">
+                                <h2 class="text-3xl font-bold pat-hand text-chalk-blue mb-2">${project.title}</h2>
+                                <p class="text-chalk-white/80 mb-3">${project.description}</p>
+                                <div class="mb-3 flex flex-wrap gap-2">
+                                    ${project.tech.map(t => `<span class="badge text-xs px-2 py-1 rounded-full bg-chalk-white/20 text-chalk-white">${t.name}</span>`).join('')}
+                                </div>
+                                <div class="flex gap-2">
+                                    ${project.repo_url ? `<a href="${project.repo_url}" target="_blank" class="bg-card-bg text-chalk-white rounded-lg px-4 py-2 hover:bg-chalk-slate/80 transition-colors border border-chalk-white/20">Repo</a>` : ''}
+                                    ${project.live_url ? `<a href="${project.live_url}" target="_blank" class="bg-chalk-yellow text-chalk-slate rounded-lg px-4 py-2 hover:bg-chalk-yellow/80 transition-colors font-bold shadow-chalk">Live</a>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+      projectOverlay.classList.add('active');
+      projectOverlayContent.style.transform = 'translateY(0)';
+    }
+  });
+
+  // --- Close overlay button logic ---
+  closeOverlayBtn.addEventListener('click', () => {
+    projectOverlay.classList.remove('active');
+    projectOverlayContent.style.transform = 'translateY(-50px)';
+  });
+
+  // --- Contact form message logic ---
+  function showMessageBox(message, type = 'success') {
+    messageBox.textContent = message;
+    messageBox.className = `message-box show bg-${type === 'success' ? 'chalk-blue text-chalk-slate' : 'chalk-red text-chalk-white'}`;
+    setTimeout(() => {
+      messageBox.classList.remove('show');
+    }, 3000);
+  }
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    contactForm.reset();
+    showMessageBox("Message sent successfully!", 'success');
+  });
+
+  // --- Music Player Logic ---
+  const songs = [{
+    name: "Chalk Scribbling",
+    url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"
+  }, {
+    name: "Pencil Sketching",
+    url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+  }, {
+    name: "Creative Brainstorm",
+    url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  }];
+
+  let audio = new Audio();
+  let isPlaying = false;
+  let currentSongIndex = -1;
+
+  function renderSongOptions() {
+    songs.forEach((song, index) => {
+      const option = document.createElement('option');
+      option.value = index;
+      option.textContent = song.name;
+      songSelect.appendChild(option);
+    });
+  }
+
+  musicControlBtn.addEventListener('click', () => {
+    if (songSelect.value === "") {
+      showMessageBox("Please select a sound first!", "error");
+      return;
+    }
+
+    if (isPlaying) {
+      audio.pause();
+      musicControlBtn.textContent = 'Play';
+      isPlaying = false;
+    } else {
+      const selectedIndex = songSelect.value;
+      if (selectedIndex != currentSongIndex) {
+        audio.pause();
+        audio = new Audio(songs[selectedIndex].url);
+        currentSongIndex = selectedIndex;
+      }
+      audio.play();
+      musicControlBtn.textContent = 'Stop';
+      isPlaying = true;
+    }
+  });
+
+  songSelect.addEventListener('change', () => {
+    if (isPlaying) {
+      audio.pause();
+      musicControlBtn.textContent = 'Play';
+      isPlaying = false;
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    musicControlBtn.textContent = 'Play';
+    isPlaying = false;
+  });
+
+  renderSongOptions();
+
+  // --- Cursor follower logic ---
+  document.addEventListener('mousemove', (e) => {
+    cursorFollower.style.opacity = '1';
+    cursorFollower.style.transform = `translate(${e.clientX - 12}px, ${e.clientY - 12}px)`;
+  });
+
+  document.addEventListener('mouseout', () => {
+    cursorFollower.style.opacity = '0';
+  });
+
+  const interactiveElements = document.querySelectorAll('a, button, input, select, .project-card');
+  interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursorFollower.classList.add('interactive');
+    });
+    el.addEventListener('mouseleave', () => {
+      cursorFollower.classList.remove('interactive');
+    });
+  });
+});

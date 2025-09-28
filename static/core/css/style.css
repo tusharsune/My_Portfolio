@@ -1,0 +1,251 @@
+:root {
+  --chalk-slate: #333d42;
+  --chalk-white: #f0f0f0;
+  --chalk-blue: #a5d6e1;
+  --chalk-yellow: #fde047;
+  --chalk-red: #ef4444;
+  --card-bg: #3c4249;
+}
+
+.light-theme {
+  --chalk-slate: #f0f0f0;
+  --chalk-white: #333d42;
+  --chalk-blue: #007bff;
+  --chalk-yellow: #f5c400;
+  --chalk-red: #dc3545;
+  --card-bg: #fff;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--chalk-slate);
+  color: var(--chalk-white);
+  transition: background-color 0.5s, color 0.5s;
+  overflow-x: hidden;
+  background-image: url('https://placehold.co/1920x1080/333d42/3c4249?text=.');
+  background-size: 1px 1px;
+  background-repeat: repeat;
+  position: relative;
+  /* Custom Cursor - applied site-wide */
+  cursor: url("https://img.icons8.com/3d-fluency/32/finger-and-thumb--v1.png") 24 24, pointer;
+}
+
+/* NEW: Override the custom cursor with the default interactive pointer when JS detects proximity */
+body.interactive-proximity {
+  cursor: pointer !important;
+}
+
+body.light-theme {
+  background-color: var(--chalk-slate);
+  color: var(--chalk-white);
+  background-image: url('https://placehold.co/1920x1080/f0f0f0/fff?text=.');
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 0, rgba(255, 255, 255, 0.08) 0%, transparent 25%),
+    radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.08) 0%, transparent 25%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.pat-hand {
+  font-family: 'Patrick Hand', cursive;
+}
+
+.project-card,
+.skills-card,
+.main-page {
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease-in-out;
+  border: 2px dashed var(--chalk-white);
+}
+
+.light-theme .project-card,
+.light-theme .skills-card,
+.light-theme .main-page {
+  border-color: var(--chalk-white);
+}
+
+.project-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  border-color: var(--chalk-blue);
+}
+
+.message-box {
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5000;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  border: 2px dashed var(--chalk-white);
+}
+
+.message-box.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(51, 61, 66, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 3000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.project-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-overlay-content {
+  position: relative;
+  background-color: var(--card-bg);
+  color: var(--chalk-white);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-50px);
+  transition: transform 0.3s ease-in-out;
+  overflow-y: auto;
+  max-height: 90vh;
+  border: 2px dashed var(--chalk-white);
+}
+
+.light-theme .project-overlay-content {
+  color: var(--chalk-white);
+}
+
+.project-overlay.active .project-overlay-content {
+  transform: translateY(0);
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--chalk-white);
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--chalk-red);
+}
+
+.initial-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--chalk-slate);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  transition: opacity 1s ease-in-out, background-color 0.5s;
+}
+
+.initial-page.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.initial-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle, var(--chalk-white) 1px, transparent 1px),
+    radial-gradient(circle, var(--chalk-white) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  opacity: 0.1;
+  animation: chalk-dust 10s linear infinite;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  animation: none;
+}
+
+/* New mobile navigation styles */
+.mobile-nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--card-bg);
+  transform: translateX(100%);
+  transition: transform 0.5s ease-in-out;
+  z-index: 4000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed var(--chalk-white);
+}
+
+.mobile-nav-menu.active {
+  transform: translateX(0);
+}
+
+.mobile-nav-menu .close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+/* Skills animation on hover */
+.skills-card {
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  transition: background-position 0.5s ease;
+}
+
+.skills-card:hover {
+  background: linear-gradient(90deg, var(--chalk-blue) 0%, var(--chalk-yellow) 25%, var(--chalk-red) 50%, var(--chalk-blue) 75%, var(--chalk-yellow) 100%);
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  color: var(--chalk-slate);
+}
+
+.chalk-doodle {
+  position: absolute;
+  opacity: 0;
+  animation: fade-in-up 1s forwards, scribble 0.5s infinite;
+  animation-delay: var(--delay);
+}
