@@ -16,7 +16,7 @@ SECRET_KEY = 'django-insecure-5lgjke^tj(!wz!^(8q#s0(q_t=e@jxhr7ai+72x7egsq4*uy)(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "tushar24.me", ".vercel.app","tushar-portfolio-9e0f.onrender.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "tushar24.me", ".vercel.app","tushar-portfolio-9e0f.onrender.com","www.tushar24.me"]
 
 
 # Application definition
