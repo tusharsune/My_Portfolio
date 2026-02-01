@@ -12,6 +12,8 @@ env/
 --- React (Node) ---
 
 frontend/node_modules/
-frontend/dist/
+
+frontend/dist/  <-- REMOVED (We want to upload the built site)
+
 frontend/.vite/
 .vscode/
