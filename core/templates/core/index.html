@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 
@@ -5,6 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>TDS — Portfolio</title>
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
 
     <!-- Google fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Patrick+Hand&display=swap"
@@ -151,7 +159,8 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex gap-4 text-lg items-center">
                     <a href="#about" class="text-decoration-none hover:text-chalk-blue transition-colors">About</a>
-                    <a href="#projects" class="text-decoration-none hover:text-chalk-blue transition-colors">Projects</a>
+                    <a href="#projects"
+                        class="text-decoration-none hover:text-chalk-blue transition-colors">Projects</a>
                     <a href="#skills" class="text-decoration-none hover:text-chalk-blue transition-colors">Skills</a>
                     <a href="#contact" class="text-decoration-none hover:text-chalk-blue transition-colors">Contact</a>
                     <button id="toggleTheme"
@@ -168,7 +177,8 @@
             <section id="about" class="px-3 md:px-6 py-10 animate-on-scroll">
                 <h2 class="text-4xl font-semibold mb-4 pat-hand text-chalk-white">About Me</h2>
                 <p class="text-base text-chalk-white/80">
-                    Hello! I'm Tushar Dattatray sune, a passionate developer and creative professional. I enjoy building things that
+                    Hello! I'm Tushar Dattatray sune, a passionate developer and creative professional. I enjoy building
+                    things that
                     live on the web, from full-stack applications to machine learning models and animated shorts. My
                     goal is to blend technical precision with creative problem-solving to deliver unique and
                     impactful solutions.
